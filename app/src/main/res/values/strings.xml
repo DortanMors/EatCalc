@@ -9,4 +9,12 @@
     <string name="open_prices_data_store">Open prices data store</string>
     <string name="open_settings">Open settings</string>
     <string name="open_converter_data_store">Open converter data store</string>
+    <string name="recipe_name">Recipe name</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="count">Count</string>
+    <string name="units">Units</string>
+    <string name="plus_symbol">+</string>
+    <string name="name">Name</string>
+    <string name="cooking_method">Cooking method</string>
+    <string name="save">Save</string>
 </resources>
