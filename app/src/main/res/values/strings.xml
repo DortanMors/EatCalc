@@ -17,4 +17,5 @@
     <string name="name">Name</string>
     <string name="cooking_method">Cooking method</string>
     <string name="save">Save</string>
+    <string name="rub">RUB</string>
 </resources>
