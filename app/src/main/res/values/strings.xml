@@ -18,4 +18,6 @@
     <string name="cooking_method">Cooking method</string>
     <string name="save">Save</string>
     <string name="rub">RUB</string>
+    <string name="currency">Currency</string>
+    <string name="price">Price</string>
 </resources>
