@@ -14,11 +14,11 @@ import com.fomin.eatcalc.datastorage.Ingredient;
 
 import java.util.List;
 
-class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.ViewHolder> {
+public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.ViewHolder> {
    private LayoutInflater inflater;
    private List<Ingredient> ingredients;
 
-   IngredientAdapter(Context context, List<Ingredient> ingredients){
+   public IngredientAdapter(Context context, List<Ingredient> ingredients){
       this.inflater = LayoutInflater.from(context);
       this.ingredients = ingredients;
    }
