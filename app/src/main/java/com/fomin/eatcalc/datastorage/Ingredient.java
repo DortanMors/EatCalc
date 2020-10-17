@@ -13,11 +13,11 @@ public class Ingredient {
 
     public double price;
 
-    public long unit_id;
+    public String unit_id;
 
-    public long currency_id;
+    public String currency_id;
 
-    public Ingredient(String name, double price, long unit_id, long currency_id) {
+    public Ingredient(String name, double price, String unit_id, String currency_id) {
         this.name = name;
         this.price = price;
         this.unit_id = unit_id;
