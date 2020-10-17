@@ -1,6 +1,7 @@
 package com.fomin.eatcalc.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -29,8 +30,9 @@ public class IngredientsListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ingredients_list);
         
         ingredientsList = (RecyclerView) findViewById(R.id.ingredients_list);
-        IngredientAdapter adapter = new IngredientAdapter(this, ingredients);
+        IngredientAdapter adapter = new IngredientAdapter(this);
         ingredientsList.setAdapter(adapter);
+        ingredientsList.setLayoutManager(new LinearLayoutManager(this));
 
         Navigator navigator = new Navigator();
         View buttonAddIngredient = (View) findViewById(R.id.add_ingredient_price);
