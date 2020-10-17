@@ -17,6 +17,12 @@ public class Ingredient {
 
     public long currency_id;
 
+    public Ingredient(String name, double price, long unit_id, long currency_id) {
+        this.name = name;
+        this.price = price;
+        this.unit_id = unit_id;
+        this.currency_id = currency_id;
+    }
 
     public String getCurrency() { // TODO: механизм получения валюты из id в string
         return String.valueOf(currency_id);
