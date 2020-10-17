@@ -14,43 +14,53 @@ import com.fomin.eatcalc.datastorage.Ingredient;
 
 import java.util.List;
 
-public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.ViewHolder> {
+public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.IngredientViewHolder> {
    private LayoutInflater inflater;
    private List<Ingredient> ingredients;
 
-   public IngredientAdapter(Context context, List<Ingredient> ingredients){
+   public IngredientAdapter(Context context){
       this.inflater = LayoutInflater.from(context);
-      this.ingredients = ingredients;
    }
 
    @NonNull
    @Override
-   public IngredientAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-      View view = inflater.inflate(R.layout.ingredients_list_item, parent, false);
-      return new ViewHolder(view);
+   public IngredientViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+      View itemView = inflater.inflate(R.layout.ingredients_list_item, parent, false);
+      return new IngredientViewHolder(itemView);
    }
 
    @Override
-   public void onBindViewHolder(@NonNull IngredientAdapter.ViewHolder holder, int position) {
-      Ingredient ingredient = ingredients.get(position);
-      holder.countView.setText(String.valueOf(1)); // price is always for 1 unit
-      holder.unitView.setText(ingredient.getUnit());
-      holder.nameView.setText(ingredient.getName());
-      holder.priceView.setText(String.valueOf(ingredient.getPrice()));
-      holder.currencyView.setText(ingredient.getCurrency());
+   public void onBindViewHolder(@NonNull IngredientViewHolder holder, int position) {
+      if(ingredients != null) {
+         Ingredient ingredient = ingredients.get(position);
+         holder.countView.setText(String.valueOf(1)); // price is always for 1 unit
+         holder.unitView.setText(ingredient.getUnit());
+         holder.nameView.setText(ingredient.getName());
+         holder.priceView.setText(String.valueOf(ingredient.getPrice()));
+         holder.currencyView.setText(ingredient.getCurrency());
+      } else {
+         holder.nameView.setText(R.string.no_ingredients_here);
+      }
    }
 
    @Override
    public int getItemCount() {
-      return ingredients.size();
+      if(ingredients != null)
+         return ingredients.size();
+      else
+         return 0;
    }
 
+   public void setIngredients(List<Ingredient> ingredients) {
+      this.ingredients = ingredients;
+      notifyDataSetChanged();
+   }
 
-   public class ViewHolder extends RecyclerView.ViewHolder{
+   public class IngredientViewHolder extends RecyclerView.ViewHolder{
 
       final TextView countView, unitView, nameView, priceView, currencyView;
 
-      public ViewHolder(@NonNull View itemView) {
+      public IngredientViewHolder(@NonNull View itemView) {
          super(itemView);
          countView    = (TextView) itemView.findViewById(R.id.item_count);
          unitView     = (TextView) itemView.findViewById(R.id.item_unit);
