@@ -15,6 +15,14 @@
         <activity
             android:name=".activity.IngredientsListActivity"
             android:label="@string/ingredients"/>
+        <activity
+            android:name=".activity.RecipesListActivity"
+            android:label="@string/recipes"/>
+        <activity
+            android:name=".activity.RecipeActivity"/>
+        <activity
+            android:name=".activity.AddRecipeActivity"
+            android:label="@string/add_recipe"/>
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

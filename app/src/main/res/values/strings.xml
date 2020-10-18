@@ -25,4 +25,5 @@
     <string name="add_ingredient">Add ingredient</string>
     <string name="new_ingredient">New ingredient</string>
     <string name="recipe_type">Recipe type</string>
+    <string name="add_recipe">Add recipe</string>
 </resources>
