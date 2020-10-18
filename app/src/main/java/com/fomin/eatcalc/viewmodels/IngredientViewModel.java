@@ -12,20 +12,20 @@ import com.fomin.eatcalc.datastorage.IngredientsAggregate;
 import java.util.List;
 
 public class IngredientViewModel extends AndroidViewModel {
-    private IngredientsAggregate mIngredientsAggregate;
-    private LiveData<List<Ingredient>> mAllIngredients;
+    private IngredientsAggregate ingredientsAggregate;
+    private LiveData<List<Ingredient>> allIngredients;
 
     public IngredientViewModel(@NonNull Application application) {
         super(application);
-        mIngredientsAggregate = new IngredientsAggregate(application);
-        mAllIngredients = mIngredientsAggregate.getAll();
+        ingredientsAggregate = new IngredientsAggregate(application);
+        allIngredients = ingredientsAggregate.getAll();
     }
 
     public LiveData<List<Ingredient>> getAllIngredients() {
-        return mAllIngredients;
+        return allIngredients;
     }
 
     public void insert(Ingredient ingredient) {
-        mIngredientsAggregate.insert(ingredient);
+        ingredientsAggregate.insert(ingredient);
     }
 }
