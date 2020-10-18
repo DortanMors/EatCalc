@@ -10,8 +10,9 @@ public class Recipe {
     public long id;
 
     public String name;
+    public String method;
     // JsonArrays
     public String ingredients;
     public String counts;
-    public String unit_ids;
+    public String units;
 }

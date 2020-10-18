@@ -6,10 +6,13 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Unit {
 
-    @PrimaryKey(autoGenerate = true)
-    public  long id;
-
+    @PrimaryKey
     public String name;
 
     public long type;
+
+    public Unit(String name, long type) {
+        this.name = name;
+        this.type = type;
+    }
 }
