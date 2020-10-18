@@ -24,4 +24,5 @@
     <string name="no_ingredients_here">No ingredients here</string>
     <string name="add_ingredient">Add ingredient</string>
     <string name="new_ingredient">New ingredient</string>
+    <string name="recipe_type">Recipe type</string>
 </resources>
