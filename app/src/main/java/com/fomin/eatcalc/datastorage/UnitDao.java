@@ -13,8 +13,8 @@ public interface UnitDao {
     @Query("SELECT * FROM unit")
     List<Unit> getAll();
 
-    @Query("SELECT * FROM unit WHERE id = :id")
-    Unit getById(long id);
+    @Query("SELECT * FROM unit WHERE name = :name")
+    Unit getById(String name);
 
     @Insert
     void insert(Unit unit);
