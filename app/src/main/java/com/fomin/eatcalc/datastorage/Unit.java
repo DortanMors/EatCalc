@@ -1,5 +1,6 @@
 package com.fomin.eatcalc.datastorage;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -7,6 +8,7 @@ import androidx.room.PrimaryKey;
 public class Unit {
 
     @PrimaryKey
+    @NonNull
     public String name;
 
     public long type;
