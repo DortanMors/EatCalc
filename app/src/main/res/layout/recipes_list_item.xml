@@ -36,8 +36,8 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/recipe_item_price"
-            app:layout_constraintStart_toEndOf="@+id/recipe_item_image"
+            app:layout_constraintEnd_toStartOf="@id/recipe_item_price"
+            app:layout_constraintStart_toEndOf="@id/recipe_item_image"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -47,9 +47,9 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/recipe_item_price"
-            app:layout_constraintStart_toEndOf="@+id/recipe_item_image"
-            app:layout_constraintTop_toBottomOf="@+id/recipe_item_name" />
+            app:layout_constraintEnd_toStartOf="@id/recipe_item_price"
+            app:layout_constraintStart_toEndOf="@id/recipe_item_image"
+            app:layout_constraintTop_toBottomOf="@id/recipe_item_name" />
 
         <TextView
             android:id="@+id/recipe_item_price"
