@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Navigator navigator = new Navigator();
-        buttonToIngredients = (View) findViewById(R.id.prices);
+        buttonToIngredients = findViewById(R.id.prices);
         buttonToIngredients.setOnClickListener(navigator);
     }
 }
