@@ -6,7 +6,9 @@ import android.view.View;
 
 import com.fomin.eatcalc.R;
 import com.fomin.eatcalc.activity.AddIngredientActivity;
+import com.fomin.eatcalc.activity.AddRecipeActivity;
 import com.fomin.eatcalc.activity.IngredientsListActivity;
+import com.fomin.eatcalc.activity.RecipesListActivity;
 
 public class Navigator implements View.OnClickListener {
 
@@ -16,6 +18,12 @@ public class Navigator implements View.OnClickListener {
         Context contextActivity = view.getContext();
         if(viewId== R.id.prices){
             Intent intent = new Intent(contextActivity, IngredientsListActivity.class);
+            contextActivity.startActivity(intent);
+        } else if(viewId == R.id.recipes) {
+            Intent intent = new Intent(contextActivity, RecipesListActivity.class);
+            contextActivity.startActivity(intent);
+        } else if(viewId == R.id.add_new_recipe) {
+            Intent intent = new Intent(contextActivity, AddRecipeActivity.class);
             contextActivity.startActivity(intent);
         } else if(viewId==R.id.add_ingredient_price){
             Intent intent = new Intent(contextActivity, AddIngredientActivity.class);
