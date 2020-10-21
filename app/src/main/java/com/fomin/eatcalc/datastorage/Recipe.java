@@ -16,4 +16,13 @@ public class Recipe {
     public String ingredients;
     public String counts;
     public String units;
+
+    public Recipe(String name, String method, double price, String ingredients, String counts, String units) {
+        this.name = name;
+        this.method = method;
+        this.price = price;
+        this.ingredients = ingredients;
+        this.counts = counts;
+        this.units = units;
+    }
 }
