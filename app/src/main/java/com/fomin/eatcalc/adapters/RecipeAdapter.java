@@ -57,7 +57,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     }
 
     public class RecipeViewHolder extends RecyclerView.ViewHolder {
-
+        
         ImageView recipeType;
         TextView name, mass, price;
 
