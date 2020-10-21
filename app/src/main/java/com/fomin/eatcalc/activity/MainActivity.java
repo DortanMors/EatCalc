@@ -10,7 +10,7 @@ import com.fomin.eatcalc.activity.navigator.Navigator;
 
 public class MainActivity extends AppCompatActivity {
 
-    View buttonToIngredients;
+    View buttonToIngredients, buttonToRecipes;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
         Navigator navigator = new Navigator();
         buttonToIngredients = findViewById(R.id.prices);
+        buttonToRecipes     = findViewById(R.id.recipes);
         buttonToIngredients.setOnClickListener(navigator);
+        buttonToRecipes.setOnClickListener(navigator);
     }
 }
