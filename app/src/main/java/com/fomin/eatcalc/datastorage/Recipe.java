@@ -11,7 +11,7 @@ public class Recipe {
 
     public String name;
     public String method;
-    public long price;
+    public double price;
     // JsonArrays
     public String ingredients;
     public String counts;
