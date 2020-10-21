@@ -10,9 +10,20 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/new_recipe_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/recipe_name" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="100dp"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/new_recipe_portions_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/portions" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <View
@@ -38,6 +49,7 @@
             android:layout_weight="1">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/deprecated_new_recipe_count"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/count" />
@@ -49,6 +61,7 @@
             android:layout_weight="1">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/deprecated_new_units"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/units" />
@@ -60,6 +73,7 @@
             android:layout_weight="3">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/deprecated_new_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name" />
@@ -91,12 +105,14 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/new_recipe_method"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/cooking_method" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:id="@+id/new_recipe_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/save" />
