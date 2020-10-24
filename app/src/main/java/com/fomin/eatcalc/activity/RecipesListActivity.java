@@ -28,7 +28,7 @@ public class RecipesListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes_list);
 
-        RecyclerView recipesList = new RecyclerView(this);
+        RecyclerView recipesList = findViewById(R.id.recipes_list);
         final RecipeAdapter recipeAdapter = new RecipeAdapter(this);
         recipesList.setAdapter(recipeAdapter);
         recipesList.setLayoutManager(new LinearLayoutManager(this));
