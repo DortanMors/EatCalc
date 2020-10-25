@@ -8,10 +8,18 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.fomin.eatcalc.adapters.RecipeIngredientAdapter;
+import com.fomin.eatcalc.datastorage.RecipeIngredient;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import com.fomin.eatcalc.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddRecipeActivity extends AppCompatActivity {
 
@@ -32,9 +40,21 @@ public class AddRecipeActivity extends AppCompatActivity {
         portionsNum = findViewById(R.id.new_recipe_portions_num);
         method = findViewById(R.id.new_recipe_method);
 
-        ingredient1count = findViewById(R.id.deprecated_new_recipe_count);
-        ingredient1name = findViewById(R.id.deprecated_new_name);
-        ingredient1unit = findViewById(R.id.deprecated_new_units);
+        List<RecipeIngredient> ingredients = new ArrayList<>();
+        RecyclerView recipeIngredientsList = findViewById(R.id.recipe_ingredients_list);
+        final RecipeIngredientAdapter recipeIngredientAdapter =
+                new RecipeIngredientAdapter(this, ingredients);
+        recipeIngredientsList.setLayoutManager(new LinearLayoutManager(this));
+        recipeIngredientsList.setAdapter(recipeIngredientAdapter);
+
+        FloatingActionButton button_add_ingredient = findViewById(R.id.add_recipe_ingredient);
+        button_add_ingredient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ingredients.add(new RecipeIngredient());
+                recipeIngredientAdapter.notifyDataSetChanged();
+            }
+        });
 
         Button button_submit = findViewById(R.id.new_recipe_save);
         button_submit.setOnClickListener(new View.OnClickListener() {
