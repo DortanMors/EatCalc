@@ -7,22 +7,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fomin.eatcalc.R;
-import com.fomin.eatcalc.datastorage.RecipeIngredient;
+import com.fomin.eatcalc.datastorage.Ingredient;
 
 import java.util.List;
 
 public class RecipeIngredientAdapter extends RecyclerView.Adapter<RecipeIngredientAdapter.RecipeIngredientViewHolder>{
 
     private LayoutInflater inflater;
-    private List<RecipeIngredient> ingredients;
-    public final int countIndex = 0, unitsIndex = 1, nameIndex = 2;
+    private List<Ingredient> ingredients;
 
-    public RecipeIngredientAdapter(Context context, List<RecipeIngredient> ingredients) {
+    public RecipeIngredientAdapter(Context context, List<Ingredient> ingredients) {
         this.inflater = LayoutInflater.from(context);
         this.ingredients = ingredients;
     }
@@ -33,21 +33,17 @@ public class RecipeIngredientAdapter extends RecyclerView.Adapter<RecipeIngredie
         View itemView = inflater.inflate(R.layout.recipe_ingredients_list_item, parent,false);
         return new RecipeIngredientViewHolder(
                 itemView,
-                new EditTextListener(countIndex),
-                new EditTextListener(unitsIndex),
-                new EditTextListener(nameIndex)
+                new EditTextListener()
         );
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecipeIngredientViewHolder holder, int position) {
         holder.countListener.updatePosition(position);
-        holder.unitsListener.updatePosition(position);
-        holder.nameListener.updatePosition(position);
-
-        holder.count.setText(ingredients.get(position).params[countIndex]);
-        holder.units.setText(ingredients.get(position).params[unitsIndex]);
-        holder.name.setText(ingredients.get(position).params[nameIndex]);
+        Ingredient ingredient = ingredients.get(position);
+        holder.count.setText(String.valueOf(ingredient.count));
+        holder.units.setText(ingredient.unit_id);
+        holder.name.setText(ingredient.name);
     }
 
     @Override
@@ -57,38 +53,28 @@ public class RecipeIngredientAdapter extends RecyclerView.Adapter<RecipeIngredie
 
     public class RecipeIngredientViewHolder extends RecyclerView.ViewHolder {
 
-        public EditText count, units, name;
-        public EditTextListener countListener, unitsListener, nameListener;
+        public EditText count;
+        public TextView units, name;
+        public EditTextListener countListener;
 
         public RecipeIngredientViewHolder(
                 @NonNull View itemView,
-                EditTextListener countListener,
-                EditTextListener unitsListener,
-                EditTextListener nameListener
+                EditTextListener countListener
         ) {
             super(itemView);
             this.countListener = countListener;
-            this.unitsListener = unitsListener;
-            this.nameListener = nameListener;
 
             count = itemView.findViewById(R.id.new_recipe_ingredient_count);
             units = itemView.findViewById(R.id.new_recipe_ingredient_units);
             name = itemView.findViewById(R.id.new_recipe_ingredient_name);
 
             count.addTextChangedListener(countListener);
-            units.addTextChangedListener(unitsListener);
-            name.addTextChangedListener(nameListener);
         }
     }
 
     private class EditTextListener implements TextWatcher {
 
         private int listPosition;
-        private int viewPosition;
-
-        public EditTextListener(int viewPosition) {
-            this.viewPosition = viewPosition;
-        }
 
         public void updatePosition(int position) {
             this.listPosition = position;
@@ -101,7 +87,7 @@ public class RecipeIngredientAdapter extends RecyclerView.Adapter<RecipeIngredie
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            ingredients.get(listPosition).params[viewPosition] = s.toString();
+            ingredients.get(listPosition).count = Integer.getInteger(s.toString());
         }
 
         @Override
