@@ -8,21 +8,15 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.fomin.eatcalc.adapters.RecipeIngredientAdapter;
-import com.fomin.eatcalc.datastorage.RecipeIngredient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import com.fomin.eatcalc.R;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class AddRecipeActivity extends AppCompatActivity {
 
+    public static final int EDIT_RECIPE_INGREDIENTS_REQUEST_CODE = 4;
     TextInputEditText name;
     TextInputEditText portionsNum;
     TextInputEditText method;
@@ -40,19 +34,12 @@ public class AddRecipeActivity extends AppCompatActivity {
         portionsNum = findViewById(R.id.new_recipe_portions_num);
         method = findViewById(R.id.new_recipe_method);
 
-        List<RecipeIngredient> ingredients = new ArrayList<>();
-        RecyclerView recipeIngredientsList = findViewById(R.id.recipe_ingredients_list);
-        final RecipeIngredientAdapter recipeIngredientAdapter =
-                new RecipeIngredientAdapter(this, ingredients);
-        recipeIngredientsList.setLayoutManager(new LinearLayoutManager(this));
-        recipeIngredientsList.setAdapter(recipeIngredientAdapter);
-
         FloatingActionButton button_add_ingredient = findViewById(R.id.add_recipe_ingredient);
         button_add_ingredient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ingredients.add(new RecipeIngredient());
-                recipeIngredientAdapter.notifyDataSetChanged();
+                Intent editIngredients = new Intent(AddRecipeActivity.this, EditIngredientsActivity.class);
+                startActivityForResult(editIngredients, EDIT_RECIPE_INGREDIENTS_REQUEST_CODE);
             }
         });
 
@@ -60,9 +47,9 @@ public class AddRecipeActivity extends AppCompatActivity {
         button_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent replyIntent = new Intent();
+                Intent addRecipe = new Intent();
                 if(TextUtils.isEmpty(name.getText())) {
-                    setResult(RESULT_CANCELED, replyIntent);
+                    setResult(RESULT_CANCELED, addRecipe);
                 } else { // TODO: добавить валидацию всех инпутов
                     int portionsCount = Integer.parseInt(portionsNum.getText().toString());
                     String recipeName = name.getText().toString();
@@ -72,15 +59,15 @@ public class AddRecipeActivity extends AppCompatActivity {
                     String ing1name = ingredient1name.getText().toString();
                     String ing1unit = ingredient1unit.getText().toString();
                     // TODO: извлечь строки в переменные
-                    replyIntent.putExtra("portionsCount", portionsCount);
-                    replyIntent.putExtra("name", recipeName);
-                    replyIntent.putExtra("cookingMethod", cookingMethod);
+                    addRecipe.putExtra("portionsCount", portionsCount);
+                    addRecipe.putExtra("name", recipeName);
+                    addRecipe.putExtra("cookingMethod", cookingMethod);
 
-                    replyIntent.putExtra("ing1count", ing1count);
-                    replyIntent.putExtra("ing1name", ing1name);
-                    replyIntent.putExtra("ing1unit", ing1unit);
+                    addRecipe.putExtra("ing1count", ing1count);
+                    addRecipe.putExtra("ing1name", ing1name);
+                    addRecipe.putExtra("ing1unit", ing1unit);
                     // TODO: если все данные в порядке
-                    setResult(RESULT_OK, replyIntent);
+                    setResult(RESULT_OK, addRecipe);
                 }
                 finish();
             }
