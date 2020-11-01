@@ -9,6 +9,8 @@ public class Ingredient {
     @PrimaryKey(autoGenerate = true)
     public long id;
 
+    public long count;
+
     public String name;
 
     public double price;
@@ -18,6 +20,11 @@ public class Ingredient {
     public String currency_id;
 
     public Ingredient(String name, double price, String unit_id, String currency_id) {
+        this(1,name,price,unit_id,currency_id);
+    }
+
+    public Ingredient(long count, String name, double price, String unit_id, String currency_id) {
+        this.count = count;
         this.name = name;
         this.price = price;
         this.unit_id = unit_id;
