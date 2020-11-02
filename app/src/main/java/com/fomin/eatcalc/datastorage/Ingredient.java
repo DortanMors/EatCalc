@@ -1,6 +1,7 @@
 package com.fomin.eatcalc.datastorage;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -19,6 +20,7 @@ public class Ingredient {
 
     public String currency_id;
 
+    @Ignore
     public Ingredient(String name, double price, String unit_id, String currency_id) {
         this(1,name,price,unit_id,currency_id);
     }
