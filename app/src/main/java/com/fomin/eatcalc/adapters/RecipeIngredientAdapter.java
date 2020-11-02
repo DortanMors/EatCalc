@@ -15,16 +15,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fomin.eatcalc.R;
 import com.fomin.eatcalc.datastorage.Ingredient;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RecipeIngredientAdapter extends RecyclerView.Adapter<RecipeIngredientAdapter.RecipeIngredientViewHolder>{
 
-    private LayoutInflater inflater;
+    private final LayoutInflater inflater;
     private List<Ingredient> ingredients;
+    private final Map<Long, Integer> counts;
 
-    public RecipeIngredientAdapter(Context context, List<Ingredient> ingredients) {
+    public RecipeIngredientAdapter(Context context) {
         this.inflater = LayoutInflater.from(context);
-        this.ingredients = ingredients;
+        this.counts = new HashMap<Long, Integer>();
     }
 
     @NonNull
@@ -39,16 +42,35 @@ public class RecipeIngredientAdapter extends RecyclerView.Adapter<RecipeIngredie
 
     @Override
     public void onBindViewHolder(@NonNull RecipeIngredientViewHolder holder, int position) {
-        holder.countListener.updatePosition(position);
-        Ingredient ingredient = ingredients.get(position);
-        holder.count.setText(String.valueOf(ingredient.count));
-        holder.units.setText(ingredient.unit_id);
-        holder.name.setText(ingredient.name);
+        if(ingredients!=null) {
+            holder.countListener.updatePosition(position);
+            Ingredient ingredient = ingredients.get(position);
+            Integer count = counts.get(ingredient.id);
+            if (count==null)
+                count = 0;
+            holder.count.setText(String.valueOf(count));
+            holder.units.setText(ingredient.unit_id);
+            holder.name.setText(ingredient.name);
+        } else {
+            holder.name.setText(R.string.no_ingredients_here);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return ingredients.size();
+        if(ingredients!=null)
+            return ingredients.size();
+        else
+            return 0;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+        notifyDataSetChanged();
+    }
+
+    public Map<Long, Integer> getCounts() {
+        return counts;
     }
 
     public class RecipeIngredientViewHolder extends RecyclerView.ViewHolder {
@@ -87,7 +109,10 @@ public class RecipeIngredientAdapter extends RecyclerView.Adapter<RecipeIngredie
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            ingredients.get(listPosition).count = Integer.getInteger(s.toString());
+            if(ingredients != null) {
+                Ingredient ingredient = ingredients.get(listPosition);
+                counts.put(ingredient.id, Integer.getInteger(s.toString()));
+            }
         }
 
         @Override
