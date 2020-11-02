@@ -23,6 +23,9 @@
         <activity
             android:name=".activity.AddRecipeActivity"
             android:label="@string/add_recipe"/>
+        <activity
+            android:name=".activity.EditIngredientsActivity"
+            android:label="@string/edit_recipe_ingredients"/>
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
