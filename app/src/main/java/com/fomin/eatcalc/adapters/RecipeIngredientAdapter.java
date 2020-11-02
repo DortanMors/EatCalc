@@ -23,11 +23,11 @@ public class RecipeIngredientAdapter extends RecyclerView.Adapter<RecipeIngredie
 
     private final LayoutInflater inflater;
     private List<Ingredient> ingredients;
-    private final Map<Long, Integer> counts;
+    private final Map<Long, Double> counts;
 
-    public RecipeIngredientAdapter(Context context) {
+    public RecipeIngredientAdapter(Context context, Map<Long, Double> counts) {
         this.inflater = LayoutInflater.from(context);
-        this.counts = new HashMap<Long, Integer>();
+        this.counts = counts;
     }
 
     @NonNull
@@ -45,9 +45,9 @@ public class RecipeIngredientAdapter extends RecyclerView.Adapter<RecipeIngredie
         if(ingredients!=null) {
             holder.countListener.updatePosition(position);
             Ingredient ingredient = ingredients.get(position);
-            Integer count = counts.get(ingredient.id);
+            Double count = counts.get(ingredient.id);
             if (count==null)
-                count = 0;
+                count = 0d;
             holder.count.setText(String.valueOf(count));
             holder.units.setText(ingredient.unit_id);
             holder.name.setText(ingredient.name);
@@ -69,7 +69,7 @@ public class RecipeIngredientAdapter extends RecyclerView.Adapter<RecipeIngredie
         notifyDataSetChanged();
     }
 
-    public Map<Long, Integer> getCounts() {
+    public Map<Long, Double> getCounts() {
         return counts;
     }
 
@@ -111,7 +111,7 @@ public class RecipeIngredientAdapter extends RecyclerView.Adapter<RecipeIngredie
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if(ingredients != null) {
                 Ingredient ingredient = ingredients.get(listPosition);
-                counts.put(ingredient.id, Integer.getInteger(s.toString()));
+                counts.put(ingredient.id, Double.parseDouble(s.toString()));
             }
         }
 
