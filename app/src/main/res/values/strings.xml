@@ -31,4 +31,5 @@
     <string name="portions">Portions</string>
     <string name="ingredient_name">Ingredient name</string>
     <string name="ingredient_count_default">0</string>
+    <string name="edit_recipe_ingredients">Edit Recipe Ingredients</string>
 </resources>
