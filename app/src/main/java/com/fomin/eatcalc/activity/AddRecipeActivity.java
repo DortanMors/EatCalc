@@ -5,28 +5,31 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.fomin.eatcalc.datastorage.Ingredient;
+import com.fomin.eatcalc.viewmodels.IngredientViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import com.fomin.eatcalc.R;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class AddRecipeActivity extends AppCompatActivity {
 
     public static final int EDIT_RECIPE_INGREDIENTS_REQUEST_CODE = 4;
-    TextInputEditText name;
-    TextInputEditText portionsNum;
-    TextInputEditText method;
-    // TODO: сделать добавление игнгредиентов
-    TextInputEditText ingredient1count;
-    TextInputEditText ingredient1unit;
-    TextInputEditText ingredient1name;
+    private TextInputEditText name;
+    private TextInputEditText portionsNum;
+    private TextInputEditText method;
     private HashMap<Long, Double> counts;
+    private double mass = 0;
+    private double price = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class AddRecipeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent editIngredients = new Intent(AddRecipeActivity.this, EditIngredientsActivity.class);
+                editIngredients.putExtra("counts", counts);
                 startActivityForResult(editIngredients, EDIT_RECIPE_INGREDIENTS_REQUEST_CODE);
             }
         });
@@ -59,23 +63,44 @@ public class AddRecipeActivity extends AppCompatActivity {
                     int portionsCount = Integer.parseInt(portionsNum.getText().toString());
                     String recipeName = name.getText().toString();
                     String cookingMethod = method.getText().toString();
-                    // TODO: переделать под список ингредиентов
-                    long ing1count = Long.parseLong(ingredient1count.getText().toString());
-                    String ing1name = ingredient1name.getText().toString();
-                    String ing1unit = ingredient1unit.getText().toString();
                     // TODO: извлечь строки в переменные
                     addRecipe.putExtra("portionsCount", portionsCount);
                     addRecipe.putExtra("name", recipeName);
                     addRecipe.putExtra("cookingMethod", cookingMethod);
 
-                    addRecipe.putExtra("ing1count", ing1count);
-                    addRecipe.putExtra("ing1name", ing1name);
-                    addRecipe.putExtra("ing1unit", ing1unit);
+                    addRecipe.putExtra("resultCounts", counts);
+                    addRecipe.putExtra("price", price);
+                    addRecipe.putExtra("mass", mass);
                     // TODO: если все данные в порядке
                     setResult(RESULT_OK, addRecipe);
                 }
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if((requestCode == EDIT_RECIPE_INGREDIENTS_REQUEST_CODE) && (resultCode == RESULT_OK)) {
+            counts = (HashMap<Long, Double>) data.getSerializableExtra("resultCounts");
+            price = 0;
+            mass = 0;
+            IngredientViewModel viewModel = new ViewModelProvider(this).get(IngredientViewModel.class);
+            for(Map.Entry<Long, Double> entry: counts.entrySet()) {
+                // TODO: посчитать цену и массу, зная ингредиент и количество
+                Ingredient ingredient = viewModel.getById(entry.getKey());
+                price += ingredient.price * entry.getValue();
+                mass += ingredient.count * entry.getValue(); // TODO: воспользоваться конвертером единиц, чтобы найти массу рецепта
+            }
+            // TODO: масса и цена узнаётся вся, не разделяя на количество порций;
+        } else {
+            Toast.makeText(
+                    getApplicationContext(),
+                    getString(R.string.recipe_not_saved),
+                    Toast.LENGTH_LONG
+            ).show();
+        }
     }
 }

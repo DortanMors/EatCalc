@@ -7,7 +7,6 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,16 +17,22 @@ import com.fomin.eatcalc.adapters.RecipeIngredientAdapter;
 import com.fomin.eatcalc.datastorage.Ingredient;
 import com.fomin.eatcalc.viewmodels.IngredientViewModel;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class EditIngredientsActivity extends AppCompatActivity {
+    private HashMap<Long, Double> counts;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_ingredients);
 
         RecyclerView ingredientsList = findViewById(R.id.edit_ingredients_list);
-        RecipeIngredientAdapter adapter = new RecipeIngredientAdapter(this);
+        counts = (HashMap<Long, Double>) getIntent().getSerializableExtra("counts");
+        if(counts==null)
+            counts = new HashMap<Long, Double>();
+        RecipeIngredientAdapter adapter = new RecipeIngredientAdapter(this, counts);
         ingredientsList.setAdapter(adapter);
         ingredientsList.setLayoutManager(new LinearLayoutManager(this));
 
@@ -43,10 +48,10 @@ public class EditIngredientsActivity extends AppCompatActivity {
         button_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent result = new Intent(); // TODO: сообщение с ответом
+                Intent result = new Intent();
+                counts = adapter.getCounts();
+                result.putExtra("resultCounts", counts);
 
-
-                
                 setResult(RESULT_OK, result);
                 finish();
             }
