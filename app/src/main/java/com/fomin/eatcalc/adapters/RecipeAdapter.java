@@ -37,7 +37,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             Recipe recipe = recipes.get(position);
             holder.recipeType.setImageResource(R.drawable.soup);
             holder.name.setText(recipe.name);
-            holder.price.setText(String.valueOf(recipe.price));
+            holder.price.setText(String.valueOf(recipe.price/recipe.portions));
         } else {
             holder.name.setText(R.string.no_recipes_here);
         }
