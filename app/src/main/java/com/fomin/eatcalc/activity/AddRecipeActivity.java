@@ -1,5 +1,6 @@
 package com.fomin.eatcalc.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.fomin.eatcalc.datastorage.Ingredient;
 import com.fomin.eatcalc.viewmodels.IngredientViewModel;
@@ -87,14 +89,27 @@ public class AddRecipeActivity extends AppCompatActivity {
             counts = (HashMap<Long, Double>) data.getSerializableExtra("resultCounts");
             price = 0;
             mass = 0;
-            IngredientViewModel viewModel = new ViewModelProvider(this).get(IngredientViewModel.class);
-            for(Map.Entry<Long, Double> entry: counts.entrySet()) {
-                // TODO: посчитать цену и массу, зная ингредиент и количество
-                Ingredient ingredient = viewModel.getById(entry.getKey());
-                price += ingredient.price * entry.getValue();
-                mass += ingredient.count * entry.getValue(); // TODO: воспользоваться конвертером единиц, чтобы найти массу рецепта
+
+            ViewModelStoreOwner context = this;
+            Thread calculating = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    IngredientViewModel viewModel = new ViewModelProvider(context).get(IngredientViewModel.class);
+                    for(Map.Entry<Long, Double> entry: counts.entrySet()) {
+                        Ingredient ingredient = viewModel.getById(entry.getKey());
+                        price += ingredient.price * entry.getValue();
+                        mass += ingredient.count * entry.getValue(); // TODO: воспользоваться конвертером единиц, чтобы найти массу рецепта
+                    }
+                    // TODO: масса и цена узнаётся вся, не разделяя на количество порций;
+                }
+            });
+            calculating.start();
+            try {
+                calculating.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            // TODO: масса и цена узнаётся вся, не разделяя на количество порций;
+
         } else {
             Toast.makeText(
                     getApplicationContext(),
