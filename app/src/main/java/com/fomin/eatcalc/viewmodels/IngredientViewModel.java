@@ -25,6 +25,10 @@ public class IngredientViewModel extends AndroidViewModel {
         return allIngredients;
     }
 
+    public Ingredient getById(long id) {
+        return ingredientsAggregate.getById(id);
+    }
+
     public void insert(Ingredient ingredient) {
         ingredientsAggregate.insert(ingredient);
     }
