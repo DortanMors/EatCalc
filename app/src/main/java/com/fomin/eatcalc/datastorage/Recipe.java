@@ -3,6 +3,8 @@ package com.fomin.eatcalc.datastorage;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.HashMap;
+
 @Entity
 public class Recipe {
 
@@ -11,18 +13,18 @@ public class Recipe {
 
     public String name;
     public String method;
+    public int portions;
     public double price;
-    // JsonArrays
-    public String ingredients;
-    public String counts;
-    public String units;
+    public double mass;
 
-    public Recipe(String name, String method, double price, String ingredients, String counts, String units) {
+    public HashMap<Long, Double> ingredients;
+
+    public Recipe(String name, String method, int portions, double price, double mass, HashMap<Long, Double> ingredients) {
         this.name = name;
         this.method = method;
+        this.portions = portions;
         this.price = price;
+        this.mass = mass;
         this.ingredients = ingredients;
-        this.counts = counts;
-        this.units = units;
     }
 }

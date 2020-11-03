@@ -17,6 +17,7 @@ import com.fomin.eatcalc.datastorage.Recipe;
 import com.fomin.eatcalc.viewmodels.RecipeViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class RecipesListActivity extends AppCompatActivity {
@@ -59,12 +60,12 @@ public class RecipesListActivity extends AppCompatActivity {
             // TODO: извлечь строки в ресурсы/переменные
             String name = data.getStringExtra("name");
             String method = data.getStringExtra("cookingMethod");
-            double price = 0;
-            String ingredients = data.getStringExtra("ing1name"); // TODO: срочно исправить
-            String counts = String.valueOf(data.getLongExtra("ing1count", 0)); // TODO: срочно исправить
-            String units = data.getStringExtra("ing1unit");
+            int portions = data.getIntExtra("portionsCount",0);
+            double price = data.getDoubleExtra("price", 0);
+            double mass = data.getDoubleExtra("mass", 0);
+            HashMap<Long, Double> ingredients = (HashMap<Long, Double>) data.getSerializableExtra("resultCounts");
 
-            Recipe recipe = new Recipe(name, method, price, ingredients, counts, units);
+            Recipe recipe = new Recipe(name, method, portions, price, mass, ingredients);
             recipeViewModel.insert(recipe);
         } else {
             Toast.makeText(
