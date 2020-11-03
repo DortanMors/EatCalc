@@ -110,7 +110,13 @@ public class RecipeIngredientAdapter extends RecyclerView.Adapter<RecipeIngredie
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if(ingredients != null) {
                 Ingredient ingredient = ingredients.get(listPosition);
-                counts.put(ingredient.id, Double.parseDouble(s.toString()));
+                double n_count;
+                try {
+                    n_count = Double.parseDouble(s.toString());
+                } catch (Exception e) {
+                    n_count = 0;
+                }
+                counts.put(ingredient.id, n_count);
             }
         }
 
