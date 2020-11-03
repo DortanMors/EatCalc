@@ -14,6 +14,8 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import com.fomin.eatcalc.R;
 
+import java.util.HashMap;
+
 public class AddRecipeActivity extends AppCompatActivity {
 
     public static final int EDIT_RECIPE_INGREDIENTS_REQUEST_CODE = 4;
@@ -24,11 +26,14 @@ public class AddRecipeActivity extends AppCompatActivity {
     TextInputEditText ingredient1count;
     TextInputEditText ingredient1unit;
     TextInputEditText ingredient1name;
+    private HashMap<Long, Double> counts;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
+
+        counts = new HashMap<Long, Double>();
 
         name = findViewById(R.id.new_recipe_name);
         portionsNum = findViewById(R.id.new_recipe_portions_num);
