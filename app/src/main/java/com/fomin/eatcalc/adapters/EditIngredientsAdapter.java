@@ -18,13 +18,13 @@ import com.fomin.eatcalc.datastorage.Ingredient;
 import java.util.HashMap;
 import java.util.List;
 
-public class RecipeIngredientAdapter extends RecyclerView.Adapter<RecipeIngredientAdapter.RecipeIngredientViewHolder>{
+public class EditIngredientsAdapter extends RecyclerView.Adapter<EditIngredientsAdapter.RecipeIngredientViewHolder>{
 
     private final LayoutInflater inflater;
     private List<Ingredient> ingredients;
     private final HashMap<Long, Double> counts;
 
-    public RecipeIngredientAdapter(Context context, HashMap<Long, Double> counts) {
+    public EditIngredientsAdapter(Context context, HashMap<Long, Double> counts) {
         this.inflater = LayoutInflater.from(context);
         this.counts = counts;
     }

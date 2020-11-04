@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fomin.eatcalc.R;
-import com.fomin.eatcalc.adapters.RecipeIngredientAdapter;
+import com.fomin.eatcalc.adapters.EditIngredientsAdapter;
 import com.fomin.eatcalc.datastorage.Ingredient;
 import com.fomin.eatcalc.viewmodels.IngredientViewModel;
 
@@ -32,7 +32,7 @@ public class EditIngredientsActivity extends AppCompatActivity {
         counts = (HashMap<Long, Double>) getIntent().getSerializableExtra("counts");
         if(counts==null)
             counts = new HashMap<Long, Double>();
-        RecipeIngredientAdapter adapter = new RecipeIngredientAdapter(this, counts);
+        EditIngredientsAdapter adapter = new EditIngredientsAdapter(this, counts);
         ingredientsList.setAdapter(adapter);
         ingredientsList.setLayoutManager(new LinearLayoutManager(this));
 
