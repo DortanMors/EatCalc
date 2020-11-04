@@ -1,6 +1,7 @@
 package com.fomin.eatcalc.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +12,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fomin.eatcalc.R;
+import com.fomin.eatcalc.activity.RecipeActivity;
 import com.fomin.eatcalc.datastorage.Recipe;
 
 import java.util.List;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>{
 
+    private Context context;
     private LayoutInflater inflater;
     private List<Recipe> recipes;
 
     public RecipeAdapter(Context context) {
+        this.context = context;
         inflater = LayoutInflater.from(context);
     }
 
@@ -28,7 +32,17 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     @Override
     public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = inflater.inflate(R.layout.recipes_list_item, parent, false);
-        return new RecipeViewHolder(itemView);
+        RecipeViewHolder holder = new RecipeViewHolder(itemView);
+        holder.itemView.setOnClickListener(v -> {
+            int position = holder.getAdapterPosition();
+            if(position != RecyclerView.NO_POSITION) {
+                long recipeId = recipes.get(position).id;
+                Intent toRecipe = new Intent(context, RecipeActivity.class);
+                toRecipe.putExtra("recipeId", recipeId);
+                context.startActivity(toRecipe);
+            }
+        });
+        return holder;
     }
 
     @Override
