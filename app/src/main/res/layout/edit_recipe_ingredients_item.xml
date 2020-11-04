@@ -16,14 +16,12 @@
         android:id="@+id/edit_recipe_ingredient_units"
         android:layout_width="0px"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/units" />
+        android:layout_weight="1"/>
 
     <TextView
         android:id="@+id/edit_recipe_ingredient_name"
         android:layout_width="0px"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:text="@string/ingredient_name" />
+        android:layout_weight="3"/>
 
 </LinearLayout>
