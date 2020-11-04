@@ -72,6 +72,11 @@ public class RecipeActivity extends AppCompatActivity {
                 }
             }
         });
+        try {
+            calculating.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         calculating.start();
 
 
