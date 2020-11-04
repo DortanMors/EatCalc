@@ -56,7 +56,7 @@ public class RecipeActivity extends AppCompatActivity {
                 Recipe recipe = recipeViewModel.getById(recipeId);
                 name.setText(recipe.name);
                 portionsNum.setText(String.valueOf(recipe.portions));
-                price.setText(String.valueOf(recipe.price));
+                price.setText(String.valueOf(recipe.price/recipe.portions));
                 currency.setText(R.string.rub); // TODO: добавить поддержку пересчёта валюты
                 cookingMethod.setText(recipe.method);
 
