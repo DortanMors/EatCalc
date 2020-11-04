@@ -22,6 +22,10 @@ public class RecipesAggregate {
         return allRecipes;
     }
 
+    public Recipe getById(long id) {
+        return recipeDao.getById(id);
+    }
+
     public void insert(Recipe recipe) {
         AppDatabase.databaseWriteExecutor.execute(()-> {
             recipeDao.insert(recipe);

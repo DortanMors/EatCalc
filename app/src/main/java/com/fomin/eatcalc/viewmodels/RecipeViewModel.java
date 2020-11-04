@@ -25,6 +25,10 @@ public class RecipeViewModel extends AndroidViewModel {
         return allRecipes;
     }
 
+    public Recipe getById(long id) {
+        return recipesAggregate.getById(id);
+    }
+
     public void insert(Recipe recipe) {
         recipesAggregate.insert(recipe);
     }
