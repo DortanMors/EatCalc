@@ -10,7 +10,7 @@
         android:id="@+id/edit_ingredients_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/edit_recipe_ingredients_item" />
+        tools:listitem="@layout/recipe_ingredients_list_item" />
 
     <Button
         android:id="@+id/add_recipe_ingredient"
