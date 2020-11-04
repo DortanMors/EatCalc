@@ -10,7 +10,7 @@ public class Ingredient {
     @PrimaryKey(autoGenerate = true)
     public long id;
 
-    public long count;
+    public double count;
 
     public String name;
 
@@ -25,7 +25,7 @@ public class Ingredient {
         this(1,name,price,unit_id,currency_id);
     }
 
-    public Ingredient(long count, String name, double price, String unit_id, String currency_id) {
+    public Ingredient(double count, String name, double price, String unit_id, String currency_id) {
         this.count = count;
         this.name = name;
         this.price = price;
