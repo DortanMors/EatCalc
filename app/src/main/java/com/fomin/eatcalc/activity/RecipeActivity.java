@@ -68,17 +68,15 @@ public class RecipeActivity extends AppCompatActivity {
                     ingredient.price *= count;
 
                     ingredients.add(ingredient);
-                    adapter.notifyDataSetChanged();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
                 }
             }
         });
-        try {
-            calculating.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         calculating.start();
-
-
     }
 }
