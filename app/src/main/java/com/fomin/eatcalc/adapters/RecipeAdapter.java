@@ -16,6 +16,7 @@ import com.fomin.eatcalc.activity.RecipeActivity;
 import com.fomin.eatcalc.datastorage.Recipe;
 
 import java.util.List;
+import java.util.Locale;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>{
 
@@ -51,7 +52,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             Recipe recipe = recipes.get(position);
             holder.recipeType.setImageResource(R.drawable.soup);
             holder.name.setText(recipe.name);
-            holder.price.setText(String.valueOf(recipe.price));
+            holder.price.setText(String.format(Locale.US, "%.2f",recipe.price));
         } else {
             holder.name.setText(R.string.no_recipes_here);
         }

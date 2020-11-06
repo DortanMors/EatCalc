@@ -13,6 +13,7 @@ import com.fomin.eatcalc.R;
 import com.fomin.eatcalc.datastorage.Ingredient;
 
 import java.util.List;
+import java.util.Locale;
 
 public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.IngredientViewHolder> {
    private LayoutInflater inflater;
@@ -36,7 +37,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
          holder.countView.setText(String.valueOf(1)); // price is always for 1 unit
          holder.unitView.setText(ingredient.getUnit());
          holder.nameView.setText(ingredient.getName());
-         holder.priceView.setText(String.valueOf(ingredient.getPrice()));
+         holder.priceView.setText(String.format(Locale.US, "%.2f", ingredient.getPrice()));
          holder.currencyView.setText(ingredient.getCurrency());
       } else {
          holder.nameView.setText(R.string.no_ingredients_here);

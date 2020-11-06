@@ -20,6 +20,7 @@ import com.fomin.eatcalc.viewmodels.RecipeViewModel;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class RecipeActivity extends AppCompatActivity {
@@ -56,7 +57,7 @@ public class RecipeActivity extends AppCompatActivity {
                 Recipe recipe = recipeViewModel.getById(recipeId);
                 name.setText(recipe.name);
                 portionsNum.setText(String.valueOf(recipe.portions));
-                price.setText(String.valueOf(recipe.price/recipe.portions));
+                price.setText(String.format(Locale.US, "%.2f", recipe.price/recipe.portions));
                 currency.setText(R.string.rub); // TODO: добавить поддержку пересчёта валюты
                 cookingMethod.setText(recipe.method);
 

@@ -13,6 +13,7 @@ import com.fomin.eatcalc.R;
 import com.fomin.eatcalc.datastorage.Ingredient;
 
 import java.util.List;
+import java.util.Locale;
 
 public class RecipeIngredientsAdapter extends RecyclerView.Adapter<RecipeIngredientsAdapter.IngredientViewHolder> {
 
@@ -37,7 +38,7 @@ public class RecipeIngredientsAdapter extends RecyclerView.Adapter<RecipeIngredi
         holder.count.setText(String.valueOf(ingredient.count));
         holder.units.setText(ingredient.unit_id);
         holder.name.setText(ingredient.name);
-        holder.price.setText(String.valueOf(ingredient.price));
+        holder.price.setText(String.format(Locale.US, "%.2f", ingredient.price));
         holder.currency.setText(ingredient.currency_id);
     }
 
