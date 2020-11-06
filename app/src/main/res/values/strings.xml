@@ -17,4 +17,20 @@
     <string name="name">Name</string>
     <string name="cooking_method">Cooking method</string>
     <string name="save">Save</string>
+    <string name="rub">RUB</string>
+    <string name="currency">Currency</string>
+    <string name="price">Price</string>
+    <string name="title_activity_ingredients_list">Ingredients</string>
+    <string name="no_ingredients_here">No ingredients here</string>
+    <string name="add_ingredient">Add ingredient</string>
+    <string name="new_ingredient">New ingredient</string>
+    <string name="recipe_type">Recipe type</string>
+    <string name="add_recipe">Add recipe</string>
+    <string name="no_recipes_here">No recipes here</string>
+    <string name="recipe_not_saved">Recipe not saved</string>
+    <string name="portions">Portions</string>
+    <string name="ingredient_name">Ingredient name</string>
+    <string name="ingredient_count_default">0</string>
+    <string name="edit_recipe_ingredients">Edit Recipe Ingredients</string>
+    <string name="for_1">for 1</string>
 </resources>

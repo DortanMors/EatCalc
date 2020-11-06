@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/fab_margin"
+    android:layout_marginEnd="@dimen/fab_margin"
+    android:layout_marginTop="@dimen/fab_margin"
+    android:layout_marginBottom="@dimen/fab_margin">
+
+    <TextView
+        android:id="@+id/ingredient_count"
+        android:layout_width="0px"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/ingredient_units"
+        android:layout_width="0px"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/ingredient_name"
+        android:layout_width="0px"
+        android:layout_height="wrap_content"
+        android:layout_weight="3" />
+
+    <TextView
+        android:id="@+id/ingredient_price"
+        android:layout_width="0px"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/ingredient_currency"
+        android:layout_width="0px"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+</LinearLayout>
