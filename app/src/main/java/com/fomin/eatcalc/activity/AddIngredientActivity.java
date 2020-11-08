@@ -37,11 +37,11 @@ public class AddIngredientActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(nameEditText.getText())) {
                     setResult(RESULT_CANCELED, replyIntent);
                 }else { // TODO: добавить проверку ввода
-                    int count = Integer.parseInt(countEditText.getText().toString());
                     String units = unitsEditText.getText().toString();
                     String name = nameEditText.getText().toString();
                     double price = Double.parseDouble(priceEditText.getText().toString());
                     String currency = currencyEditText.getText().toString();
+                double count = Double.parseDouble(countEditText.getText().toString());
                     // TODO: извлечь строки в переменные
                     replyIntent.putExtra("count", count);
                     replyIntent.putExtra("units", units);
