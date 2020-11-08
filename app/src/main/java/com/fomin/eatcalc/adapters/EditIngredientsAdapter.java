@@ -86,8 +86,8 @@ public class EditIngredientsAdapter extends RecyclerView.Adapter<EditIngredients
             this.countListener = countListener;
 
             count = itemView.findViewById(R.id.new_recipe_ingredient_count);
-            units = (TextView) itemView.findViewById(R.id.new_recipe_ingredient_units);
-            name = (TextView) itemView.findViewById(R.id.new_recipe_ingredient_name);
+            units =  itemView.findViewById(R.id.new_recipe_ingredient_units);
+            name = itemView.findViewById(R.id.new_recipe_ingredient_name);
 
             count.addTextChangedListener(countListener);
         }
