@@ -113,7 +113,6 @@ public class AddRecipeActivity extends AppCompatActivity {
 
                         runOnUiThread(adapter::notifyDataSetChanged);
                     }
-                    // TODO: масса и цена узнаётся вся, не разделяя на количество порций;
                 }
             });
             calculating.start();

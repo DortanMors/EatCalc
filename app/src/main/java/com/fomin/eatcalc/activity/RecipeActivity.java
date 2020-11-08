@@ -47,35 +47,28 @@ public class RecipeActivity extends AppCompatActivity {
         long recipeId = getIntent().getLongExtra("recipeId", 1);
 
         ViewModelStoreOwner owner = this;
-        Thread calculating = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                ViewModelProvider viewModelProvider = new ViewModelProvider(owner);
-                IngredientViewModel ingredientViewModel = viewModelProvider.get(IngredientViewModel.class);
-                RecipeViewModel recipeViewModel = viewModelProvider.get(RecipeViewModel.class);
+        Thread calculating = new Thread(() -> {
+            ViewModelProvider viewModelProvider = new ViewModelProvider(owner);
+            IngredientViewModel ingredientViewModel = viewModelProvider.get(IngredientViewModel.class);
+            RecipeViewModel recipeViewModel = viewModelProvider.get(RecipeViewModel.class);
 
-                Recipe recipe = recipeViewModel.getById(recipeId);
-                name.setText(recipe.name);
-                portionsNum.setText(String.valueOf(recipe.portions));
-                price.setText(String.format(Locale.US, "%.2f", recipe.price/recipe.portions));
-                currency.setText(R.string.rub); // TODO: добавить поддержку пересчёта валюты
-                cookingMethod.setText(recipe.method);
+            Recipe recipe = recipeViewModel.getById(recipeId);
+            name.setText(recipe.name);
+            portionsNum.setText(String.valueOf(recipe.portions));
+            price.setText(String.format(Locale.US, "%.2f", recipe.price/recipe.portions));
+            currency.setText(R.string.rub); // TODO: добавить поддержку пересчёта валюты
+            cookingMethod.setText(recipe.method);
 
-                HashMap<Long, Double> counts = recipe.ingredients;
-                for(Map.Entry<Long, Double> entry : counts.entrySet()) {
-                    Ingredient ingredient = ingredientViewModel.getById(entry.getKey());
-                    double count = entry.getValue();
-                    if(count!=0) {
-                        ingredient.count = count;
-                        ingredient.price *= count;
-                        ingredients.add(ingredient);
-                    }
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            adapter.notifyDataSetChanged();
-                        }
-                    });
+            HashMap<Long, Double> counts = recipe.ingredients;
+            for(Map.Entry<Long, Double> entry : counts.entrySet()) {
+                Ingredient ingredient = ingredientViewModel.getById(entry.getKey());
+                double count = entry.getValue();
+                if(count!=0) {
+                    ingredient.count = count;
+                    ingredient.price *= count;
+                    ingredients.add(ingredient);
+
+                    runOnUiThread(adapter::notifyDataSetChanged);
                 }
             }
         });
