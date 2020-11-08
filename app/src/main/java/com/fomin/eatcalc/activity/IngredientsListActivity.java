@@ -1,15 +1,12 @@
 package com.fomin.eatcalc.activity;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.lifecycle.Observer;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import com.fomin.eatcalc.R;
@@ -17,8 +14,6 @@ import com.fomin.eatcalc.adapters.IngredientAdapter;
 import com.fomin.eatcalc.datastorage.Ingredient;
 import com.fomin.eatcalc.viewmodels.IngredientViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.List;
 
 public class IngredientsListActivity extends AppCompatActivity {
     public static final int ADD_INGREDIENT_ACTIVITY_REQUEST_CODE = 1;
@@ -35,21 +30,12 @@ public class IngredientsListActivity extends AppCompatActivity {
         ingredientsList.setLayoutManager(new LinearLayoutManager(this));
 
         ingredientViewModel = new ViewModelProvider(this).get(IngredientViewModel.class);
-        ingredientViewModel.getAllIngredients().observe(this, new Observer<List<Ingredient>>() {
-
-            @Override
-            public void onChanged(@Nullable final List<Ingredient> ingredients) {
-                adapter.setIngredients(ingredients);
-            }
-        });
+        ingredientViewModel.getAllIngredients().observe(this, adapter::setIngredients);
 
         FloatingActionButton button_add = findViewById(R.id.add_ingredient_price);
-        button_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(IngredientsListActivity.this, AddIngredientActivity.class);
-                startActivityForResult(intent, ADD_INGREDIENT_ACTIVITY_REQUEST_CODE);
-            }
+        button_add.setOnClickListener(v -> {
+            Intent intent = new Intent(IngredientsListActivity.this, AddIngredientActivity.class);
+            startActivityForResult(intent, ADD_INGREDIENT_ACTIVITY_REQUEST_CODE);
         });
     }
 
