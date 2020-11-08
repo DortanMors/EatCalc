@@ -44,7 +44,7 @@ public class IngredientsListActivity extends AppCompatActivity {
 
         if(requestCode == ADD_INGREDIENT_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             // TODO: извлечь строки в переменные, получать их из AddIngredientActivity
-            int edit_count = data.getIntExtra("count", 1);
+            double edit_count = data.getDoubleExtra("count", 1);
             String name = data.getStringExtra("name");
             String units = data.getStringExtra("units");
             String currency = data.getStringExtra("currency");
