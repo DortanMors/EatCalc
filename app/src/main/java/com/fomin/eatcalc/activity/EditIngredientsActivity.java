@@ -25,9 +25,10 @@ public class EditIngredientsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_ingredients);
 
         RecyclerView ingredientsList = findViewById(R.id.edit_ingredients_list);
+
         counts = (HashMap<Long, Double>) getIntent().getSerializableExtra("counts");
-        if(counts==null)
-            counts = new HashMap<>();
+        if(counts==null) counts = new HashMap<>();
+
         EditIngredientsAdapter adapter = new EditIngredientsAdapter(this, counts);
         ingredientsList.setAdapter(adapter);
         ingredientsList.setLayoutManager(new LinearLayoutManager(this));
