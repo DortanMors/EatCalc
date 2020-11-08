@@ -6,7 +6,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fomin.eatcalc.R;
 import com.fomin.eatcalc.datastorage.Ingredient;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,8 +34,7 @@ public class EditIngredientsAdapter extends RecyclerView.Adapter<EditIngredients
     public RecipeIngredientViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = inflater.inflate(R.layout.recipe_ingredients_list_item, parent,false);
         return new RecipeIngredientViewHolder(
-                itemView,
-                new EditTextListener()
+                itemView
         );
     }
 
@@ -74,20 +73,18 @@ public class EditIngredientsAdapter extends RecyclerView.Adapter<EditIngredients
 
     public class RecipeIngredientViewHolder extends RecyclerView.ViewHolder {
 
-        public EditText count;
+        public TextInputEditText count;
         public TextView units, name;
         public EditTextListener countListener;
 
         public RecipeIngredientViewHolder(
-                @NonNull View itemView,
-                EditTextListener countListener
+                @NonNull View itemView
         ) {
             super(itemView);
-            this.countListener = countListener;
-
+            name =  itemView.findViewById(R.id.new_recipe_ingredient_name);
+            units = itemView.findViewById(R.id.new_recipe_ingredient_units);
             count = itemView.findViewById(R.id.new_recipe_ingredient_count);
-            units =  itemView.findViewById(R.id.new_recipe_ingredient_units);
-            name = itemView.findViewById(R.id.new_recipe_ingredient_name);
+            this.countListener = new EditTextListener(count);
 
             count.addTextChangedListener(countListener);
         }
@@ -95,7 +92,12 @@ public class EditIngredientsAdapter extends RecyclerView.Adapter<EditIngredients
 
     private class EditTextListener implements TextWatcher {
 
+        private TextInputEditText countEdit;
         private int listPosition;
+
+        public EditTextListener(TextInputEditText countEdit) {
+            this.countEdit = countEdit;
+        }
 
         public void updatePosition(int position) {
             this.listPosition = position;
@@ -114,6 +116,7 @@ public class EditIngredientsAdapter extends RecyclerView.Adapter<EditIngredients
                 try {
                     n_count = Double.parseDouble(s.toString());
                 } catch (Exception e) {
+                    countEdit.setError(countEdit.getContext().getString(R.string.input_number));
                     n_count = 0;
                 }
 
