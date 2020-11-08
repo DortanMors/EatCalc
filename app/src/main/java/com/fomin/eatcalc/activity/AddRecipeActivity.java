@@ -32,17 +32,24 @@ public class AddRecipeActivity extends AppCompatActivity {
     private HashMap<Long, Double> counts;
     private double mass = 0;
     private double price = 0;
+    private List<Ingredient> ingredients = new LinkedList<>();
+    private RecipeIngredientsAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
 
-        counts = new HashMap<Long, Double>();
+        adapter = new RecipeIngredientsAdapter(this, ingredients);
+        counts = new HashMap<>();
 
         name = findViewById(R.id.new_recipe_name);
         portionsNum = findViewById(R.id.new_recipe_portions_num);
         method = findViewById(R.id.new_recipe_method);
+
+        RecyclerView ingredientsView = findViewById(R.id.add_recipe_ingredients);
+        ingredientsView.setAdapter(adapter);
+        ingredientsView.setLayoutManager(new LinearLayoutManager(this));
 
         FloatingActionButton button_add_ingredient = findViewById(R.id.add_recipe_ingredient);
         button_add_ingredient.setOnClickListener(new View.OnClickListener() {
@@ -91,14 +98,20 @@ public class AddRecipeActivity extends AppCompatActivity {
             mass = 0;
 
             ViewModelStoreOwner context = this;
-            Thread calculating = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    IngredientViewModel viewModel = new ViewModelProvider(context).get(IngredientViewModel.class);
-                    for(Map.Entry<Long, Double> entry: counts.entrySet()) {
-                        Ingredient ingredient = viewModel.getById(entry.getKey());
-                        price += ingredient.price * entry.getValue();
-                        mass += ingredient.count * entry.getValue(); // TODO: воспользоваться конвертером единиц, чтобы найти массу рецепта
+            Thread calculating = new Thread(() -> {
+                IngredientViewModel viewModel = new ViewModelProvider(context).get(IngredientViewModel.class);
+                ingredients.clear();
+                for(Map.Entry<Long, Double> entry: counts.entrySet()) {
+                    Ingredient ingredient = viewModel.getById(entry.getKey());
+                    double count = entry.getValue();
+                    if(count!=0) {
+                        ingredient.price *= count;
+                        ingredient.count *= count;
+                        price += ingredient.price;
+                        mass += ingredient.count;
+                        ingredients.add(ingredient); // TODO: воспользоваться конвертером единиц, чтобы найти массу рецепта
+
+                        runOnUiThread(adapter::notifyDataSetChanged);
                     }
                     // TODO: масса и цена узнаётся вся, не разделяя на количество порций;
                 }
@@ -117,5 +130,11 @@ public class AddRecipeActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG
             ).show();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
     }
 }

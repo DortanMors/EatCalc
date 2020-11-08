@@ -116,7 +116,12 @@ public class EditIngredientsAdapter extends RecyclerView.Adapter<EditIngredients
                 } catch (Exception e) {
                     n_count = 0;
                 }
-                counts.put(ingredient.id, n_count);
+
+                if(n_count != 0) {
+                    counts.put(ingredient.id, n_count);
+                } else {
+                    counts.remove(ingredient.id);
+                }
             }
         }
 
