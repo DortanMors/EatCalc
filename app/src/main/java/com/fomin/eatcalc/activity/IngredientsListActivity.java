@@ -55,7 +55,7 @@ public class IngredientsListActivity extends AppCompatActivity {
         } else {
             Toast.makeText(
                     getApplicationContext(),
-                    "Ingredient not saved because it is uncomplete",
+                    getString(R.string.Ingredient_not_saved_because_it_is_uncompleted),
                     Toast.LENGTH_LONG
                 ).show();
         }

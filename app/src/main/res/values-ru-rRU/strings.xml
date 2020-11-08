@@ -36,4 +36,5 @@
     <string name="field_must_not_be_empty">Заполните поле</string>
     <string name="input_number">Введите число</string>
     <string name="recipe_has_no_ingredients">Добавьте ингредиенты в рецепт.</string>
+    <string name="Ingredient_not_saved_because_it_is_uncompleted">Ингредиент не добавлен</string>
 </resources>
