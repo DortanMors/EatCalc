@@ -35,4 +35,5 @@
     <string name="for_1">for 1</string>
     <string name="field_must_not_be_empty">Field must not be empty</string>
     <string name="input_number">Input number</string>
+    <string name="recipe_has_no_ingredients">Recipe has no ingredients.</string>
 </resources>
