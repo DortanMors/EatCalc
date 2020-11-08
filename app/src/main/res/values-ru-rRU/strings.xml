@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">EatCalc</string>
+
+    <string name="recipes">Рецепты</string>
+    <string name="prices">Цены</string>
+    <string name="settings">Настройки</string>
+    <string name="converter">Конвертер</string>
+    <string name="open_recipes_book">Открыть книгу рецептов</string>
+    <string name="open_prices_data_store">Открыть цены ингредиентов</string>
+    <string name="open_settings">Открыть настройки</string>
+    <string name="open_converter_data_store">Открыть конвертер</string>
+    <string name="recipe_name">Название</string>
+    <string name="ingredients">Ингредиенты</string>
+    <string name="count">Кол-во</string>
+    <string name="units">Ед.</string>
+    <string name="plus_symbol">+</string>
+    <string name="name">Название</string>
+    <string name="cooking_method">Метод приготовления</string>
+    <string name="save">Сохранить</string>
+    <string name="rub">руб.</string>
+    <string name="currency">Валюта</string>
+    <string name="price">Цена</string>
+    <string name="title_activity_ingredients_list">Ингредиенты</string>
+    <string name="no_ingredients_here">Ингредиентов нет</string>
+    <string name="add_ingredient">Добавить ингредиент</string>
+    <string name="new_ingredient">Новый ингредиент</string>
+    <string name="recipe_type">Тип рецепта</string>
+    <string name="add_recipe">Добавить рецепт</string>
+    <string name="no_recipes_here">Рецептов нет</string>
+    <string name="recipe_not_saved">Рецепт не сохранён</string>
+    <string name="portions">Порции</string>
+    <string name="ingredient_name">Название ингредиента</string>
+    <string name="ingredient_count_default">0</string>
+    <string name="edit_recipe_ingredients">Редактировать ингредиенты</string>
+    <string name="for_1">за 1</string>
+    <string name="field_must_not_be_empty">Заполните поле</string>
+    <string name="input_number">Введите число</string>
+    <string name="recipe_has_no_ingredients">Добавьте ингредиенты в рецепт.</string>
+</resources>
