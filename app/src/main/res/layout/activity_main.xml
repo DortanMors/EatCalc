@@ -55,7 +55,7 @@
             android:gravity="start"
             android:layout_gravity="center_vertical"
             android:textSize="48sp"
-            android:text='@string/prices'
+            android:text='@string/ingredients'
             />
     </LinearLayout>
 
