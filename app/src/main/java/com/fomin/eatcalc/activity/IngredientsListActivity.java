@@ -1,15 +1,20 @@
 package com.fomin.eatcalc.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.fomin.eatcalc.R;
+import com.fomin.eatcalc.swipe.SwipeController;
+import com.fomin.eatcalc.swipe.SwipeControllerActions;
 import com.fomin.eatcalc.adapters.IngredientAdapter;
 import com.fomin.eatcalc.datastorage.Ingredient;
 import com.fomin.eatcalc.viewmodels.IngredientViewModel;
@@ -31,6 +36,27 @@ public class IngredientsListActivity extends AppCompatActivity {
 
         ingredientViewModel = new ViewModelProvider(this).get(IngredientViewModel.class);
         ingredientViewModel.getAllIngredients().observe(this, adapter::setIngredients);
+
+        SwipeController swipeController = new SwipeController(new SwipeControllerActions() {
+            @Override
+            public void onLeftClicked(int position) {
+
+            }
+
+            @Override
+            public void onRightClicked(int position) {
+                Ingredient toDelete = adapter.getItem(position);
+                ingredientViewModel.delete(toDelete);
+            }
+        });
+        ItemTouchHelper touchHelper = new ItemTouchHelper(swipeController);
+        touchHelper.attachToRecyclerView(ingredientsList);
+        ingredientsList.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                swipeController.onDraw(c);
+            }
+        });
 
         FloatingActionButton button_add = findViewById(R.id.add_ingredient_price);
         button_add.setOnClickListener(v -> {
