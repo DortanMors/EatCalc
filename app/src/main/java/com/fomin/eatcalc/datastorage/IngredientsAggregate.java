@@ -31,4 +31,16 @@ public class IngredientsAggregate {
             ingredientDao.insert(ingredient);
         });
     }
+
+    public void delete(Ingredient ingredient) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            ingredientDao.delete(ingredient);
+        });
+    }
+
+    public void update(Ingredient ingredient) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            ingredientDao.update(ingredient);
+        });
+    }
 }

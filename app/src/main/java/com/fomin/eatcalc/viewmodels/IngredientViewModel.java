@@ -32,4 +32,12 @@ public class IngredientViewModel extends AndroidViewModel {
     public void insert(Ingredient ingredient) {
         ingredientsAggregate.insert(ingredient);
     }
+
+    public void delete(Ingredient ingredient) {
+        ingredientsAggregate.delete(ingredient);
+    }
+
+    public void update(Ingredient ingredient) {
+        ingredientsAggregate.update(ingredient);
+    }
 }
