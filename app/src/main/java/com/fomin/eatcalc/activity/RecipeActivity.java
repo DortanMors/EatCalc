@@ -63,7 +63,7 @@ public class RecipeActivity extends AppCompatActivity {
             for(Map.Entry<Long, Double> entry : counts.entrySet()) {
                 Ingredient ingredient = ingredientViewModel.getById(entry.getKey());
                 double count = entry.getValue();
-                if(count!=0) {
+                if(count!=0 && ingredient!=null) {
                     ingredient.count = count;
                     ingredient.price *= count;
                     ingredients.add(ingredient);

@@ -9,15 +9,16 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fomin.eatcalc.adapters.RecipeIngredientsAdapter;
 import com.fomin.eatcalc.datastorage.Ingredient;
+import com.fomin.eatcalc.datastorage.Recipe;
 import com.fomin.eatcalc.validation.EmptyValidator;
 import com.fomin.eatcalc.validation.ValidatorsComposer;
 import com.fomin.eatcalc.viewmodels.IngredientViewModel;
+import com.fomin.eatcalc.viewmodels.RecipeViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -40,8 +41,9 @@ public class AddRecipeActivity extends AppCompatActivity {
     private boolean isValid = false;
     private boolean isError = false;
     private final Context context = this;
-    private List<Ingredient> ingredients = new LinkedList<>();
+    private final List<Ingredient> ingredients = new LinkedList<>();
     private RecipeIngredientsAdapter adapter;
+    private long id = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +60,41 @@ public class AddRecipeActivity extends AppCompatActivity {
         RecyclerView ingredientsView = findViewById(R.id.add_recipe_ingredients);
         ingredientsView.setAdapter(adapter);
         ingredientsView.setLayoutManager(new LinearLayoutManager(this));
+
+        Intent curIntent = getIntent();
+        name.setText(curIntent.getStringExtra("name"));
+//        portionsNum.setText(curIntent.getIntExtra("portions", 0)); // TODO: исправить баг здесь
+        method.setText(curIntent.getStringExtra("method"));
+
+
+        if(curIntent.getIntExtra("requestCode", 2) == RecipesListActivity.UPDATE_RECIPE_ACTIVITY_REQUEST_CODE) {
+            new Thread(()-> {
+                RecipeViewModel recipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
+                id = curIntent.getLongExtra("id",1);
+                Recipe recipe = recipeViewModel.getById(id);
+                for(Map.Entry<Long, Double> entry : recipe.ingredients.entrySet()) {
+                    counts.put(entry.getKey(), entry.getValue());
+                }
+
+                // TODO: воспользоваться calculating
+                // TODO: count entry бывает нулевой
+                IngredientViewModel viewModel = new ViewModelProvider(this).get(IngredientViewModel.class);
+                ingredients.clear();
+                for(Map.Entry<Long, Double> entry: counts.entrySet()) {
+                    Ingredient ingredient = viewModel.getById(entry.getKey());
+                    double count = entry.getValue();
+                    if(count!=0 && ingredient!=null) {
+                        ingredient.price *= count;
+                        ingredient.count *= count;
+                        price += ingredient.price;
+                        mass += ingredient.count;
+                        ingredients.add(ingredient); // TODO: воспользоваться конвертером единиц, чтобы найти массу рецепта
+
+                        runOnUiThread(adapter::notifyDataSetChanged);
+                    }
+                }
+            }).start();
+        }
 
         FloatingActionButton button_add_ingredient = findViewById(R.id.add_recipe_ingredient);
         button_add_ingredient.setOnClickListener(v -> {
@@ -109,6 +146,8 @@ public class AddRecipeActivity extends AppCompatActivity {
                 addRecipe.putExtra("price", price);
                 addRecipe.putExtra("mass", mass);
 
+                addRecipe.putExtra("id", id);
+
                 setResult(RESULT_OK, addRecipe);
                 isValid = true;
                 finish();
@@ -135,9 +174,8 @@ public class AddRecipeActivity extends AppCompatActivity {
             price = 0;
             mass = 0;
 
-            ViewModelStoreOwner context = this;
             Thread calculating = new Thread(() -> {
-                IngredientViewModel viewModel = new ViewModelProvider(context).get(IngredientViewModel.class);
+                IngredientViewModel viewModel = new ViewModelProvider(this).get(IngredientViewModel.class);
                 ingredients.clear();
                 for(Map.Entry<Long, Double> entry: counts.entrySet()) {
                     Ingredient ingredient = viewModel.getById(entry.getKey());
