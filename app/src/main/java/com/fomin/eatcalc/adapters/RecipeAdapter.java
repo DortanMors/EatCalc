@@ -66,6 +66,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             return 0;
     }
 
+    public Recipe getItem(int position) {
+        return recipes.get(position);
+    }
+
     public void setRecipes(List<Recipe> recipes) {
         this.recipes = recipes;
         notifyDataSetChanged();
