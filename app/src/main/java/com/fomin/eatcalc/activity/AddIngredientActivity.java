@@ -22,6 +22,7 @@ public class AddIngredientActivity extends AppCompatActivity {
     private TextInputEditText priceEditText;
     private TextInputEditText currencyEditText;
     private final Context context = this;
+    private long id = -1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,17 @@ public class AddIngredientActivity extends AppCompatActivity {
         nameEditText     = findViewById(R.id.add_ingredient_name);
         priceEditText    = findViewById(R.id.add_ingredient_edit_price);
         currencyEditText = findViewById(R.id.add_ingredient_currency);
+
+        Intent curIntent = getIntent();
+        int requestCode = curIntent.getIntExtra("requestCode", 1);
+        if(requestCode == IngredientsListActivity.UPDATE_INGREDIENT_ACTIVITY_REQUEST_CODE) {
+            countEditText.setText(String.valueOf(curIntent.getDoubleExtra("count",0)));
+            unitsEditText.setText(curIntent.getStringExtra("units"));
+            nameEditText.setText(curIntent.getStringExtra("name"));
+            priceEditText.setText(String.valueOf(curIntent.getDoubleExtra("price",0)));
+            currencyEditText.setText(curIntent.getStringExtra("currency"));
+            id = curIntent.getLongExtra("id", -1);
+        }
 
         final Button button_submit = findViewById(R.id.save_new_ingredient);
         button_submit.setOnClickListener(v -> {
@@ -74,6 +86,7 @@ public class AddIngredientActivity extends AppCompatActivity {
             }
             if(!isError) {
                 // TODO: извлечь строки в переменные
+                replyIntent.putExtra("id", id);
                 replyIntent.putExtra("count", count);
                 replyIntent.putExtra("units", units);
                 replyIntent.putExtra("name", name);

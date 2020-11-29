@@ -37,4 +37,6 @@
     <string name="input_number">Input number</string>
     <string name="recipe_has_no_ingredients">Recipe has no ingredients.</string>
     <string name="Ingredient_not_saved_because_it_is_uncompleted">Ingredient not saved because it is uncompleted</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 </resources>
