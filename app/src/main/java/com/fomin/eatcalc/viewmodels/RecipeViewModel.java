@@ -12,8 +12,8 @@ import com.fomin.eatcalc.datastorage.RecipesAggregate;
 import java.util.List;
 
 public class RecipeViewModel extends AndroidViewModel {
-    private RecipesAggregate recipesAggregate;
-    private LiveData<List<Recipe>> allRecipes;
+    private final RecipesAggregate recipesAggregate;
+    private final LiveData<List<Recipe>> allRecipes;
 
     public RecipeViewModel(@NonNull Application application) {
         super(application);
@@ -31,5 +31,13 @@ public class RecipeViewModel extends AndroidViewModel {
 
     public void insert(Recipe recipe) {
         recipesAggregate.insert(recipe);
+    }
+
+    public void delete(Recipe recipe) {
+        recipesAggregate.delete(recipe);
+    }
+
+    public void update(Recipe recipe) {
+        recipesAggregate.update(recipe);
     }
 }

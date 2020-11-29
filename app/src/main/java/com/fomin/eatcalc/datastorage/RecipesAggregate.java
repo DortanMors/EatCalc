@@ -7,8 +7,8 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 public class RecipesAggregate {
-    private RecipeDao recipeDao;
-    private LiveData<List<Recipe>> allRecipes;
+    private final RecipeDao recipeDao;
+    private final LiveData<List<Recipe>> allRecipes;
 
     public RecipesAggregate(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
@@ -27,8 +27,14 @@ public class RecipesAggregate {
     }
 
     public void insert(Recipe recipe) {
-        AppDatabase.databaseWriteExecutor.execute(()-> {
-            recipeDao.insert(recipe);
-        });
+        AppDatabase.databaseWriteExecutor.execute(()-> recipeDao.insert(recipe));
+    }
+
+    public void delete(Recipe recipe) {
+        AppDatabase.databaseWriteExecutor.execute(()-> recipeDao.delete(recipe));
+    }
+
+    public void update(Recipe recipe) {
+        AppDatabase.databaseWriteExecutor.execute(()-> recipeDao.update(recipe));
     }
 }
