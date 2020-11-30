@@ -62,16 +62,20 @@ public class AddRecipeActivity extends AppCompatActivity {
         ingredientsView.setLayoutManager(new LinearLayoutManager(this));
 
         Intent curIntent = getIntent();
-        name.setText(curIntent.getStringExtra("name"));
-//        portionsNum.setText(curIntent.getIntExtra("portions", 0)); // TODO: исправить баг здесь
-        method.setText(curIntent.getStringExtra("method"));
+        int editRecipePortions = curIntent.getIntExtra("portions", 0);
+        String editRecipeName = curIntent.getStringExtra("name");
+        String editRecipeMethod = curIntent.getStringExtra("method");
+        name.setText(editRecipeName);
+        portionsNum.setText(String.valueOf(editRecipePortions));
+        method.setText(editRecipeMethod);
 
 
         if(curIntent.getIntExtra("requestCode", 2) == RecipesListActivity.UPDATE_RECIPE_ACTIVITY_REQUEST_CODE) {
             new Thread(()-> {
                 RecipeViewModel recipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
-                id = curIntent.getLongExtra("id",1);
-                Recipe recipe = recipeViewModel.getById(id);
+                long curId = curIntent.getLongExtra("id",1);
+                id = curId;
+                Recipe recipe = recipeViewModel.getById(curId);
                 for(Map.Entry<Long, Double> entry : recipe.ingredients.entrySet()) {
                     counts.put(entry.getKey(), entry.getValue());
                 }
