@@ -46,7 +46,7 @@ public class RecipesListActivity extends AppCompatActivity {
                 Recipe toUpdate = recipeAdapter.getItem(position);
                 Intent intent = new Intent(RecipesListActivity.this, AddRecipeActivity.class);
                 intent.putExtra("requestCode", UPDATE_RECIPE_ACTIVITY_REQUEST_CODE);
-                intent.putExtra("id", toUpdate.name);
+                intent.putExtra("id", toUpdate.id);
                 intent.putExtra("name", toUpdate.name);
                 intent.putExtra("portions", toUpdate.portions);
                 intent.putExtra("method", toUpdate.method);
