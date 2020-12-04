@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fomin.eatcalc.R;
+
 import static androidx.recyclerview.widget.ItemTouchHelper.ACTION_STATE_SWIPE;
 import static androidx.recyclerview.widget.ItemTouchHelper.LEFT;
 
@@ -162,7 +164,7 @@ public class SwipeController extends ItemTouchHelper.Callback {
         );
         p.setColor(Color.BLUE);
         c.drawRoundRect(leftButton, corners, corners, p);
-        drawText("EDIT", c, leftButton, p);
+        drawText(viewHolder.itemView.getContext().getString(R.string.edit), c, leftButton, p);
 
         RectF rightButton = new RectF(
                 itemView.getRight() - buttonWidthWithoutPadding,
@@ -172,7 +174,7 @@ public class SwipeController extends ItemTouchHelper.Callback {
         );
         p.setColor(Color.RED);
         c.drawRoundRect(rightButton, corners, corners, p);
-        drawText("DELETE", c, rightButton, p);
+        drawText(viewHolder.itemView.getContext().getString(R.string.delete), c, rightButton, p);
 
         buttonLeftInstance = null;
         buttonRightInstance = null;
