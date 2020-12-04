@@ -16,6 +16,8 @@ import com.fomin.eatcalc.adapters.RecipeIngredientsAdapter;
 import com.fomin.eatcalc.datastorage.Ingredient;
 import com.fomin.eatcalc.datastorage.Recipe;
 import com.fomin.eatcalc.validation.EmptyValidator;
+import com.fomin.eatcalc.validation.PositiveValidator;
+import com.fomin.eatcalc.validation.Validator;
 import com.fomin.eatcalc.validation.ValidatorsComposer;
 import com.fomin.eatcalc.viewmodels.IngredientViewModel;
 import com.fomin.eatcalc.viewmodels.RecipeViewModel;
@@ -118,6 +120,11 @@ public class AddRecipeActivity extends AppCompatActivity {
             } catch (Exception e) {
                 portionsCount = 0;
                 portionsNum.setError(context.getString(R.string.input_number));
+                isError = true;
+            }
+            Validator<Double> positiveValidator = new PositiveValidator(context);
+            if(!positiveValidator.isValid((double) portionsCount)) {
+                portionsNum.setError(positiveValidator.getMessage());
                 isError = true;
             }
             String recipeName = name.getText().toString();

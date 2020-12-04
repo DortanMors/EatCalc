@@ -9,6 +9,9 @@ import android.widget.Button;
 
 import com.fomin.eatcalc.R;
 import com.fomin.eatcalc.validation.EmptyValidator;
+import com.fomin.eatcalc.validation.NonNegativeValidator;
+import com.fomin.eatcalc.validation.PositiveValidator;
+import com.fomin.eatcalc.validation.Validator;
 import com.fomin.eatcalc.validation.ValidatorsComposer;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -56,12 +59,18 @@ public class AddIngredientActivity extends AppCompatActivity {
             String name = nameEditText.getText().toString();
             String currency = currencyEditText.getText().toString();
 
+            Validator<Double> nonNegative = new NonNegativeValidator(context);
+            Validator<Double> positiveValidator = new PositiveValidator(context);
             try {
                 count = Double.parseDouble(countEditText.getText().toString());
             } catch (Exception e) {
                 count = 0;
                 isError = true;
                 countEditText.setError(context.getString(R.string.input_number));
+            }
+            if(!positiveValidator.isValid(count)) {
+                isError = true;
+                countEditText.setError(positiveValidator.getMessage());
             }
             try {
                 price = Double.parseDouble(priceEditText.getText().toString());
@@ -70,7 +79,10 @@ public class AddIngredientActivity extends AppCompatActivity {
                 isError = true;
                 priceEditText.setError(context.getString(R.string.input_number));
             }
-
+            if(!nonNegative.isValid(price)) {
+                isError = true;
+                priceEditText.setError(nonNegative.getMessage());
+            }
             ValidatorsComposer<String> validation = new ValidatorsComposer<>(new EmptyValidator(context));
             if (!validation.isValid(units)) {
                 unitsEditText.setError(validation.getMessage());

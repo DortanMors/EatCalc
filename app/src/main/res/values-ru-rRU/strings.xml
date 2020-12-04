@@ -37,4 +37,6 @@
     <string name="input_number">Введите число</string>
     <string name="recipe_has_no_ingredients">Добавьте ингредиенты в рецепт.</string>
     <string name="Ingredient_not_saved_because_it_is_uncompleted">Ингредиент не добавлен</string>
+    <string name="must_be_positive">Введите положительное</string>
+    <string name="must_be_non_negative">Введите неотрицательное</string>
 </resources>

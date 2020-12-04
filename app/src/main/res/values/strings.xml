@@ -39,4 +39,6 @@
     <string name="Ingredient_not_saved_because_it_is_uncompleted">Ingredient not saved because it is uncompleted</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="must_be_positive">Value must be positive</string>
+    <string name="must_be_non_negative">Value must be non negative</string>
 </resources>
