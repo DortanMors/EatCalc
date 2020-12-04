@@ -15,18 +15,16 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="0px"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:src="@drawable/recipes"
             android:contentDescription="@string/recipes" />
 
         <TextView
-            android:layout_width="0px"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
             android:contentDescription="@string/open_recipes_book"
             android:gravity="start"
             android:layout_gravity="center_vertical"
@@ -41,17 +39,15 @@
         android:layout_weight="1"
         android:orientation="horizontal">
         <ImageView
-            android:layout_width="0px"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:src="@drawable/prices"
             android:contentDescription="@string/ingredients" />
         <TextView
-            android:layout_width="0px"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
             android:contentDescription="@string/open_prices_data_store"
             android:gravity="start"
             android:layout_gravity="center_vertical"
@@ -67,17 +63,15 @@
         android:layout_weight="1"
         android:orientation="horizontal">
         <ImageView
-            android:layout_width="0px"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:src="@drawable/settings"
             android:contentDescription="@string/settings" />
         <TextView
-            android:layout_width="0px"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
             android:contentDescription="@string/open_settings"
             android:gravity="start"
             android:layout_gravity="center_vertical"
@@ -93,17 +87,15 @@
         android:layout_weight="1"
         android:orientation="horizontal">
         <ImageView
-            android:layout_width="0px"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:src="@drawable/scale"
             android:contentDescription="@string/converter" />
         <TextView
-            android:layout_width="0px"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
             android:contentDescription="@string/open_converter_data_store"
             android:gravity="start"
             android:layout_gravity="center_vertical"
