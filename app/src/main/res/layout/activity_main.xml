@@ -30,7 +30,7 @@
             android:contentDescription="@string/open_recipes_book"
             android:gravity="start"
             android:layout_gravity="center_vertical"
-            android:textSize="48sp"
+            android:textSize="40sp"
             android:text='@string/recipes' />
     </LinearLayout>
 
@@ -55,7 +55,7 @@
             android:contentDescription="@string/open_prices_data_store"
             android:gravity="start"
             android:layout_gravity="center_vertical"
-            android:textSize="48sp"
+            android:textSize="40sp"
             android:text='@string/ingredients'
             />
     </LinearLayout>
@@ -81,7 +81,7 @@
             android:contentDescription="@string/open_settings"
             android:gravity="start"
             android:layout_gravity="center_vertical"
-            android:textSize="48sp"
+            android:textSize="40sp"
             android:text='@string/settings'
             />
     </LinearLayout>
@@ -107,7 +107,7 @@
             android:contentDescription="@string/open_converter_data_store"
             android:gravity="start"
             android:layout_gravity="center_vertical"
-            android:textSize="48sp"
+            android:textSize="40sp"
             android:text='@string/converter'
             />
     </LinearLayout>
