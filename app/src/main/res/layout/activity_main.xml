@@ -7,101 +7,64 @@
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
-    <LinearLayout
+    <TextView
         android:id="@+id/recipes"
         android:layout_width="match_parent"
         android:layout_height="0px"
+        android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:contentDescription="@string/open_recipes_book"
+        android:gravity="center|start"
+        android:drawablePadding="15dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:text='@string/recipes'
+        android:textSize="40sp"
+        app:drawableStartCompat="@drawable/recipes" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/recipes"
-            android:contentDescription="@string/recipes" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/open_recipes_book"
-            android:gravity="start"
-            android:layout_gravity="center_vertical"
-            android:textSize="40sp"
-            android:text='@string/recipes' />
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
         android:id="@+id/prices"
         android:layout_width="match_parent"
         android:layout_height="0px"
+        android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/prices"
-            android:contentDescription="@string/ingredients" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/open_prices_data_store"
-            android:gravity="start"
-            android:layout_gravity="center_vertical"
-            android:textSize="40sp"
-            android:text='@string/ingredients'
-            />
-    </LinearLayout>
+        android:gravity="center|start"
+        android:drawablePadding="15dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:textSize="40sp"
+        android:text='@string/ingredients'
+        android:contentDescription="@string/open_prices_data_store"
+        app:drawableStartCompat="@drawable/prices" />
 
-    <LinearLayout
+    <TextView
         android:id="@+id/settings"
         android:layout_width="match_parent"
         android:layout_height="0px"
+        android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/settings"
-            android:contentDescription="@string/settings" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/open_settings"
-            android:gravity="start"
-            android:layout_gravity="center_vertical"
-            android:textSize="40sp"
-            android:text='@string/settings'
-            />
-    </LinearLayout>
+        android:gravity="center|start"
+        android:drawablePadding="15dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:textSize="40sp"
+        android:text='@string/settings'
+        android:contentDescription="@string/open_settings"
+        app:drawableStartCompat="@drawable/settings" />
 
-    <LinearLayout
+    <TextView
         android:id="@+id/converter"
         android:layout_width="match_parent"
         android:layout_height="0px"
+        android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/scale"
-            android:contentDescription="@string/converter" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/open_converter_data_store"
-            android:gravity="start"
-            android:layout_gravity="center_vertical"
-            android:textSize="40sp"
-            android:text='@string/converter'
-            />
-    </LinearLayout>
+        android:gravity="center|start"
+        android:drawablePadding="15dp"
+        android:paddingStart="18dp"
+        android:paddingEnd="15dp"
+        android:textSize="40sp"
+        android:text='@string/converter'
+        android:contentDescription="@string/open_converter_data_store"
+        app:drawableStartCompat="@drawable/scale" />
 
 </LinearLayout>
