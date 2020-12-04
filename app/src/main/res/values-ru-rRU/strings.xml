@@ -39,4 +39,6 @@
     <string name="Ingredient_not_saved_because_it_is_uncompleted">Ингредиент не добавлен</string>
     <string name="must_be_positive">Введите положительное</string>
     <string name="must_be_non_negative">Введите неотрицательное</string>
+    <string name="edit">Ред.</string>
+    <string name="delete">Удалить</string>
 </resources>
