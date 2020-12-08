@@ -41,5 +41,6 @@
     <string name="must_be_non_negative">Введите неотрицательное</string>
     <string name="edit">Ред.</string>
     <string name="delete">Удалить</string>
+    <string name="to_edit">Редактировать</string>
     <string name="cook">Cook</string>
 </resources>

@@ -41,5 +41,6 @@
     <string name="delete">Delete</string>
     <string name="must_be_positive">Value must be positive</string>
     <string name="must_be_non_negative">Value must be non negative</string>
+    <string name="to_edit">Edit</string>
     <string name="cook">Cook</string>
 </resources>
