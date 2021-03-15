@@ -1,6 +1,8 @@
 package com.fomin.eatcalc.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -73,5 +75,14 @@ public class RecipeActivity extends AppCompatActivity {
             }
         });
         calculating.start();
+
+        Button edit_button = findViewById(R.id.edit);
+        edit_button.setOnClickListener(v -> {
+            Intent intent = new Intent(RecipeActivity.this, AddRecipeActivity.class);
+            intent.putExtra("requestCode", RecipesListActivity.UPDATE_RECIPE_ACTIVITY_REQUEST_CODE);
+            intent.putExtra("id", recipeId);
+            RecipeActivity.this.startActivityForResult(intent, RecipesListActivity.UPDATE_RECIPE_ACTIVITY_REQUEST_CODE);
+        });
+        Button delete_button = findViewById(R.id.delete);
     }
 }
